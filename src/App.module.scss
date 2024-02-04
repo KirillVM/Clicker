@@ -1,0 +1,20 @@
+@import './styles/placeholders.scss';
+
+.app{
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+
+  .main {
+    display: flex;
+    flex-direction: column;
+    flex: 1 0 auto;
+    margin: 3rem 0;
+    @extend %font-prom;
+  }
+}
+
+html {
+  box-sizing: border-box;
+  font-size: 62.5%;
+}

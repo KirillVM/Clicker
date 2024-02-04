@@ -1,0 +1,11 @@
+.section {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  gap: 1rem;
+}
+
+.button, .alert {
+  width: 17rem;
+}
