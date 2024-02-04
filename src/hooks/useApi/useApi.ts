@@ -1,8 +1,5 @@
+import { ClickerResponse, ClickerResponseWithError } from './Api.interface';
 import { useEffect, useState } from 'react';
-
-interface ClickerResponse {
-  count: number;
-}
 
 const useApi = (url: string | URL | Request, options?: RequestInit) => {
   const [isLoading, setIsLoading] = useState<boolean>(true);
@@ -14,11 +11,17 @@ const useApi = (url: string | URL | Request, options?: RequestInit) => {
   useEffect(() => {
     const fetchData = async () => {
       setIsLoading(true);
-      setError(null);
       try {
         const response = await fetch(url, options);
-        const data = await response.json();
-        setResponseData(data);
+        const data: ClickerResponse | ClickerResponseWithError =
+          await response.json();
+        if (!response.ok) {
+          console.log(data);
+          throw Error((data as ClickerResponseWithError)['error_ui']);
+        } else {
+          setError(null);
+        }
+        setResponseData(data as ClickerResponse);
       } catch (error) {
         setError(error as Error);
       } finally {
@@ -28,7 +31,7 @@ const useApi = (url: string | URL | Request, options?: RequestInit) => {
     fetchData();
   }, [url, options]);
 
-  return { isLoading, error, responseData } as const;
+  return { isLoading, error, responseData, setResponseData } as const;
 };
 
 export default useApi;
