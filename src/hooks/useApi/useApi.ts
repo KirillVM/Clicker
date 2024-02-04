@@ -16,7 +16,6 @@ const useApi = (url: string | URL | Request, options?: RequestInit) => {
         const data: ClickerResponse | ClickerResponseWithError =
           await response.json();
         if (!response.ok) {
-          console.log(data);
           throw Error((data as ClickerResponseWithError)['error_ui']);
         } else {
           setError(null);

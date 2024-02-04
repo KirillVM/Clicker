@@ -17,7 +17,6 @@ const FibonacciSumOfEvenItems = (
 
   const handleEvenInputChange = (e: ChangeEvent<HTMLInputElement>): void => {
     e.preventDefault();
-    console.log(typeof e.target.value);
     setEvenInputValue(parseInt(e.target.value, 10));
   };
 

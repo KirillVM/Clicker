@@ -1,11 +1,10 @@
 import styles from './Clicker.module.scss';
-import useApi from '@src/hooks/useApi/useApi';
-import Alert from '@mui/material/Alert';
-import { useState } from 'react';
-import LoadingButton from '@mui/lab/LoadingButton';
 import clsx from 'clsx';
+import { useState } from 'react';
+import useApi from '@src/hooks/useApi/useApi';
 import ApiResponse from './ApiResponse/ApiResponse';
-import { Button } from '@mui/material';
+import { Button, Alert } from '@mui/material';
+import LoadingButton from '@mui/lab/LoadingButton';
 
 const url = 'https://lk.zont-online.ru/api/button_count';
 const initOptions: RequestInit = {
@@ -46,7 +45,7 @@ const Clicker = (): JSX.Element => {
         variant="contained"
         onClick={handleButtonClick}
         size="large"
-        loading={isLoading}
+        loading={true}
         color="secondary"
         loadingPosition="start"
         className={clsx(styles.button)}
@@ -67,6 +66,7 @@ const Clicker = (): JSX.Element => {
         size="large"
         onClick={handleResetButtonClick}
         color="warning"
+        disabled={isLoading}
         className={clsx(styles.button)}
       >
         Reset

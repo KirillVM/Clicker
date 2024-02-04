@@ -18,7 +18,6 @@ const FibonacciMemoList = (
 
   const handleMemoInputChange = (e: ChangeEvent<HTMLInputElement>): void => {
     e.preventDefault();
-    console.log(typeof e.target.value);
     setMemoInputValue(parseInt(e.target.value, 10));
   };
 
