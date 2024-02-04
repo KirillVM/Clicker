@@ -1,5 +1,5 @@
 # Clicker
-Button click counter Vite + React + TypeScript + MUI
+Button click counter and fibonacci number calculator Vite + React + TypeScript + MUI
 
 ## Tech stack
 

@@ -45,7 +45,7 @@ const Clicker = (): JSX.Element => {
         variant="contained"
         onClick={handleButtonClick}
         size="large"
-        loading={true}
+        loading={isLoading}
         color="secondary"
         loadingPosition="start"
         className={clsx(styles.button)}
