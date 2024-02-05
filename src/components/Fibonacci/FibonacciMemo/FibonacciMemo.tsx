@@ -49,7 +49,7 @@ const FibonacciMemoList = (
       List of results:
       <div className={clsx(styles['memo-list'])}>
         {Array.from(memoMap)
-          .slice(0, n - 1)
+          .slice(0, n)
           .map((item) => (
             <span key={item[0]} className={clsx(styles['memo-list__item'])}>
               {`${item[0]}: ${item[1]}`}

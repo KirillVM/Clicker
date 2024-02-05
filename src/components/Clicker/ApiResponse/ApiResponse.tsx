@@ -5,19 +5,16 @@ import clsx from 'clsx';
 import { useEffect, useState } from 'react';
 
 const ApiResponse = (apiResponseProps: ApiResponseProps): JSX.Element => {
-  const { data, error, count, isLoading } = apiResponseProps;
+  const { data, error, isLoading } = apiResponseProps;
   const [responseMessage, setResponseMessage] =
     useState<string>('Кликните на кнопку');
 
   useEffect(() => {
-    if (count === 0) {
-      !isLoading && setResponseMessage('Кликните на кнопку');
-    } else {
-      !isLoading &&
-        !error &&
+    if (!isLoading) {
+      !error &&
         data &&
         setResponseMessage(`По версии сервера: ${data?.count.toString()}`);
-      !isLoading && error && setResponseMessage(error.toString());
+      error && setResponseMessage(error.toString());
     }
   }, [error, data, isLoading]);
 
