@@ -5,6 +5,7 @@ import useApi from '@src/hooks/useApi/useApi';
 import ApiResponse from './ApiResponse/ApiResponse';
 import { Button, Alert } from '@mui/material';
 import LoadingButton from '@mui/lab/LoadingButton';
+import SendIcon from '@mui/icons-material/Send';
 
 const url = 'https://lk.zont-online.ru/api/button_count';
 const initOptions: RequestInit = {
@@ -29,16 +30,11 @@ const Clicker = (): JSX.Element => {
     clearTimeout(timerId);
     const id: ReturnType<typeof setTimeout> = setTimeout(() => {
       setOptions({ ...options, body: JSON.stringify({ count: count + 1 }) });
+      setCount(0);
     }, 1000);
     setTimerId(+id);
     setCount(count + 1);
   };
-
-  const handleResetButtonClick = () => {
-    setCount(0);
-    setResponseData(null);
-  };
-
   return (
     <section className={clsx(styles.section)}>
       <LoadingButton
@@ -47,7 +43,8 @@ const Clicker = (): JSX.Element => {
         size="large"
         loading={isLoading}
         color="secondary"
-        loadingPosition="start"
+        loadingPosition="end"
+        endIcon={<SendIcon/>}
         className={clsx(styles.button)}
       >
         Кликнуть
@@ -58,19 +55,8 @@ const Clicker = (): JSX.Element => {
       <ApiResponse
         data={responseData}
         error={error}
-        count={count}
         isLoading={isLoading}
       />
-      <Button
-        variant="contained"
-        size="large"
-        onClick={handleResetButtonClick}
-        color="warning"
-        disabled={isLoading}
-        className={clsx(styles.button)}
-      >
-        Reset
-      </Button>
     </section>
   );
 };
