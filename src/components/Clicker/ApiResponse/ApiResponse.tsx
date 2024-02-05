@@ -8,13 +8,14 @@ const ApiResponse = (apiResponseProps: ApiResponseProps): JSX.Element => {
   const { data, error, isLoading } = apiResponseProps;
   const [responseMessage, setResponseMessage] =
     useState<string>('Кликните на кнопку');
-  
 
   useEffect(() => {
-      if(!isLoading) {
-        !error && data && setResponseMessage(`По версии сервера: ${data?.count.toString()}`);
-        error && setResponseMessage(error.toString());
-      }
+    if (!isLoading) {
+      !error &&
+        data &&
+        setResponseMessage(`По версии сервера: ${data?.count.toString()}`);
+      error && setResponseMessage(error.toString());
+    }
   }, [error, data, isLoading]);
 
   return (
